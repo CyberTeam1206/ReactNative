@@ -17,7 +17,7 @@ export default class PostScreen extends React.Component {
 
     handlePost = () => {
         Fire.shared
-            .addPost({ text: this.state.text.trim(), localUri: this.state.image })
+            .addPost({ text: this.state.text.trim(), localUri: this.state.image})
             .then(ref => {
                 this.setState({ text: "", image: null });
                 this.props.navigation.goBack();
@@ -78,7 +78,8 @@ export default class PostScreen extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        marginTop: 35
     },
     header: {
         flexDirection: "row",
@@ -86,11 +87,12 @@ const styles = StyleSheet.create({
         paddingHorizontal: 32,
         paddingVertical: 12,
         borderBottomWidth: 1,
-        borderBottomColor: "#D8D9DB"
+        borderBottomColor: "#D8D9D8"
     },
     inputContainer: {
-        margin: 32,
-        flexDirection: "row"
+        marginLeft: 22,
+        marginTop: 12,
+        flexDirection: "row",
     },
     avatar: {
         width: 48,
@@ -100,6 +102,7 @@ const styles = StyleSheet.create({
     },
     photo: {
         alignItems: "flex-end",
-        marginHorizontal: 32
+        marginHorizontal: 22,
+
     }
 });

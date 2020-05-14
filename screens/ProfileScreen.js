@@ -9,20 +9,20 @@ export default class ProfileScreen extends React.Component {
 
     unsubscribe = null;
 
-    componentDidMount() {
-        const user = this.props.uid || Fire.shared.uid;
+    /*componentDidMount() {
+        const users = this.props.body || Fire.shared.body;
 
         this.unsubscribe = Fire.shared.firestore
             .collection("users")
-            .doc(user)
+            .doc(users)
             .onSnapshot(doc => {
-                this.setState({ user: doc.data() });
+                this.setState({ user: doc.data()});
             });
     }
 
     componentWillUnmount() {
         this.unsubscribe();
-    }
+    }*/
 
     render() {
         return (
@@ -30,15 +30,11 @@ export default class ProfileScreen extends React.Component {
                 <View style={{ marginTop: 64, alignItems: "center" }}>
                     <View style={styles.avatarContainer}>
                         <Image
-                            source={
-                                this.state.user.avatar
-                                    ? { uri: this.state.user.avatar }
-                                    : require("../assets/icon.png")
-                            }
+                            source={require("../assets/pict.png")}
                             style={styles.avatar}
                         />
                     </View>
-                    <Text style={styles.name}>{this.state.user.name}</Text>
+                    <Text style={styles.name}>Hello</Text>
                 </View>
                 <View style={styles.statsContainer}>
                     <View style={styles.stat}>

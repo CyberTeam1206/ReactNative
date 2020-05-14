@@ -1,6 +1,7 @@
 import React from 'react'
 import {View, Text, StyleSheet, TextInput, TouchableOpacity, Image} from 'react-native'
 import * as firebase from "firebase";
+import * as ImagePicker from "expo-image-picker";
 
 export default class RegisterScreen extends React.Component {
     static navigationOptions = {
@@ -29,7 +30,7 @@ export default class RegisterScreen extends React.Component {
         }
     };
 
-   /* handlePickAvatar = async () => {
+    handlePickAvatar = async () => {
         UserPermissions.getCameraPermission();
 
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -41,7 +42,7 @@ export default class RegisterScreen extends React.Component {
         if (!result.cancelled) {
             this.setState({ user: { ...this.state.user, avatar: result.uri } });
         }
-    };*/
+    };
 
     render() {
         return (
