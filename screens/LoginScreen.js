@@ -3,9 +3,9 @@ import {View, Text, StyleSheet, TextInput,TouchableOpacity, Image, StatusBar, La
 import * as firebase from "firebase";
 
 export default class LoginScreen extends React.Component {
-    //static navigationOptions = {
-    //    header: null
-   // };
+    static navigationOptions = {
+    headerShown: false
+    };
 
     state = {
         email: "",
@@ -22,12 +22,13 @@ export default class LoginScreen extends React.Component {
             .catch(error => this.setState({errorMessage: error.message}))
     }
     render() {
+        LayoutAnimation.easeInEaseOut();
         return (
             <View style={styles.container}>
                 <StatusBar barStyle = "light-content"></StatusBar>
                 <Image
-                    source = {require("../assets/picss.png")}
-                    style={{width: 400}}>
+                    source = {require("../assets/plane-paper.png")}
+                    style={{ height:264, width:395}}>
                 </Image>
                 <Text style = {styles.greeting}>{'Hello \n TraStory is for you! '}</Text>
                 <View style={styles.errorMessage}>
@@ -59,7 +60,7 @@ export default class LoginScreen extends React.Component {
                 <TouchableOpacity style={{alignSelf: "center", marginTop: 32}}
                                   onPress={() => this.props.navigation.navigate("Register")}>
                     <Text style = {{color: "#414959", fontSize: 13}}>
-                        New to TraStory? <Text style = {{fontWeight: "500", color: "#E9446A"}}>Sign up</Text>
+                        New to TraStory? <Text style = {{fontWeight: "500", color: "#2a9ed2"}}>Sign up</Text>
                     </Text>
                     </TouchableOpacity>
             </View>
@@ -72,7 +73,8 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     greeting: {
-        marginTop: 32,
+        marginTop: -62,
+        marginLeft: 204,
         fontSize: 18,
         fontWeight: "400",
         textAlign: "center"
@@ -84,7 +86,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 30
     },
     error: {
-        color: "#E9446A",
+        color: "#e90022",
         fontSize: 13,
         fontWeight: "600",
         textAlign: "center"
@@ -94,12 +96,12 @@ const styles = StyleSheet.create({
         marginHorizontal: 30
     },
     inputTitle: {
-        color: "#8A8F9E",
+        color: "#31239e",
         fontSize: 10,
         textTransform: "uppercase"
     },
     input: {
-        borderBottomColor: "#8A8F9E",
+        borderBottomColor: "#373f9e",
         borderBottomWidth: StyleSheet.hairlineWidth,
         height: 40,
         fontSize: 15,
@@ -107,7 +109,7 @@ const styles = StyleSheet.create({
     },
     button: {
         marginHorizontal: 30,
-        backgroundColor: "#479e00",
+        backgroundColor: "#2a9ed2",
         borderRadius: 4,
         height: 52,
         alignItems: "center",
