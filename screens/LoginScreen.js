@@ -20,7 +20,8 @@ export default class LoginScreen extends React.Component {
             .auth()
             .signInWithEmailAndPassword(email, password)
             .catch(error => this.setState({errorMessage: error.message}))
-    }
+    };
+
     render() {
         LayoutAnimation.easeInEaseOut();
         return (
@@ -28,7 +29,7 @@ export default class LoginScreen extends React.Component {
                 <StatusBar barStyle = "light-content"></StatusBar>
                 <Image
                     source = {require("../assets/plane-paper.png")}
-                    style={{ height:264, width:395}}>
+                    style={{ height:264, width:394}}>
                 </Image>
                 <Text style = {styles.greeting}>{'Hello \n TraStory is for you! '}</Text>
                 <View style={styles.errorMessage}>
@@ -41,7 +42,8 @@ export default class LoginScreen extends React.Component {
                         <TextInput style ={styles.input} autoCapitalize = "none"
                                    onChangeText={email => this.setState({email})}
                                    value={this.state.email}
-                        ></TextInput>
+                        >
+                        </TextInput>
                     </View>
 
                     <View style = {{marginTop: 32}}>
@@ -49,7 +51,8 @@ export default class LoginScreen extends React.Component {
                         <TextInput style ={styles.input} secureTextEntry
                                    autoCapitalize = "none"
                                    onChangeText={password => this.setState({password})}
-                                   value={this.state.password}></TextInput>
+                                   value={this.state.password}>
+                        </TextInput>
                     </View>
            </View>
 

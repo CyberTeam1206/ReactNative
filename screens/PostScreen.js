@@ -3,48 +3,47 @@ import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, TextInput, Imag
 import { Ionicons } from "@expo/vector-icons";
 import Fire from "../Fire";
 import * as ImagePicker from "expo-image-picker";
-import UserPermissions from "../utilities/UserPermissions";
+
 
 export default class PostScreen extends React.Component {
-    state = {
-        text: "",
-        image: null
+   state = {
+        body: "",
+        imageUrl: null
     };
 
-    componentDidMount() {
-        UserPermissions.getCameraPermission;
-    }
+
 
     handlePost = () => {
-        Fire.shared
-            .addPost({ text: this.state.text.trim(), localUri: this.state.image})
-            .then(ref => {
-                this.setState({ text: "", image: null });
-                this.props.navigation.goBack();
-            })
-            .catch(error => {
-                alert(error);
-            });
-    };
+         Fire.shared
+             .addPost({ body: this.state.body.trim(), imageUrl: this.state.image})
+             .then(ref => {
+                 this.setState({ body: " ", image: null });
+                 this.props.navigation.goBack();
+             })
+             .catch(error => {
+                 alert(error);
+             });
+     };
+/*
+     pickImage = async () => {
+         let result = await ImagePicker.launchImageLibraryAsync({
+             mediaTypes: ImagePicker.MediaTypeOptions.Images,
+             allowsEditing: true,
+             aspect: [4, 3]
+         });
 
-    pickImage = async () => {
-        let result = await ImagePicker.launchImageLibraryAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [4, 3]
-        });
-
-        if (!result.cancelled) {
-            this.setState({ image: result.uri });
-        }
-    };
+         if (!result.cancelled) {
+             this.setState({ image: result.uri });
+         }
+     };*/
 
     render() {
         return (
             <SafeAreaView style={styles.container}>
                 <View style={styles.header}>
                     <TouchableOpacity onPress={() => this.props.navigation.goBack()}>
-                        <Ionicons name="md-arrow-back" size={24} color="#D8D9DB"></Ionicons>
+                        <Ionicons name="md-arrow-back" size={24} color="#D8D9DB">
+                        </Ionicons>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={this.handlePost}>
                         <Text style={{ fontWeight: "500" }}>Post</Text>
@@ -52,16 +51,18 @@ export default class PostScreen extends React.Component {
                 </View>
 
                 <View style={styles.inputContainer}>
-                    <Image source={require("../assets/plane-paper.png")} style={styles.avatar}></Image>
+                    <Image source={require("../assets/plane-paper.png")} style={styles.avatar}>
+                    </Image>
                     <TextInput
                         autoFocus={true}
                         multiline={true}
                         numberOfLines={4}
                         style={{ flex: 1 }}
                         placeholder="Want to share something?"
-                        onChangeText={text => this.setState({ text })}
-                        value={this.state.text}
-                    ></TextInput>
+                        onChangeText={body => this.setState({ body })}
+                        value={this.state.body}
+                    >
+                    </TextInput>
                 </View>
 
                 <TouchableOpacity style={styles.photo} onPress={this.pickImage}>

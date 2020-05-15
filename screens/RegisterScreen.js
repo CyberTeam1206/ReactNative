@@ -24,7 +24,14 @@ export default class RegisterScreen extends React.Component {
     handleSignUp = () => {
         const {password, confirmPassword } = this.state;
         if (this.state.password === this.state.confirmPassword) {
-            Fire.shared.createUser(this.state.user);
+            firebase
+                .auth()
+                .createUserWithEmailAndPassword(this.state.email, this.state.password)
+                .then(useCredentials => {
+                    return useCredentials.user.updateProfile({
+                        displayName: this.state.name
+                    });
+                })
         } else {
             alert('Passwords do not match.');
         }
@@ -49,7 +56,7 @@ export default class RegisterScreen extends React.Component {
             <View style={styles.container}>
                 <Image
                     source = {require("../assets/plane-paper.png")}
-                    style={{ height:264, width:395}}>
+                    style={{ height:264, width:394}}>
                 </Image>
                 <Text style = {styles.greeting}>{'Welcome! \n Please, sign up:) '}</Text>
                 <View style={styles.errorMessage}>

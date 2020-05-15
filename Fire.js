@@ -2,96 +2,64 @@ import FirebaseKeys from "./config";
 import firebase from "firebase";
 require("firebase/firestore");
 
+
+
 class Fire {
     constructor() {
         firebase.initializeApp(FirebaseKeys);
- }
+    }
 
-    addPost = async ({ text, localUri }) => {
-        const remoteUri = await this.uploadPhotoAsync(localUri, `photos/${this.uid}/${Date.now()}`);
+     addPost(scream) {
 
-        return new Promise((res, rej) => {
-            this.firestore
+            firebase.firestore()
                 .collection("screams")
                 .add({
-                    text,
-                    uid: this.uid,
-                    timestamp: this.timestamp,
-                    image: remoteUri
-                })
-                .then(ref => {
-                    res(ref);
-                })
-                .catch(error => {
-                    rej(error);
-                });
-        });
-    };
+                    body: scream.text,
+                    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    }
+                )
+                .then((data) => scream(data))
+                .catch(error => { console.error(error)});
+        };
 
-    uploadPhotoAsync = (uri, filename) => {
-        return new Promise(async (res, rej) => {
-            const response = await fetch(uri);
-            const file = await response.blob();
+     async getPost() {
+         var screamList = [];
+             var snapshot = await firebase.firestore()
+                 .collection('screams')
+                 .orderBy('createdAt')
+                 .get()
+                 snapshot.forEach((doc) =>{
+                    screamList.push(doc.data());
+                 })
 
-            let upload = firebase
-                .storage()
-                .ref(filename)
-                .put(file);
+         };
 
-            upload.on(
-                "state_changed",
-                snapshot => {},
-                err => {
-                    rej(err);
-                },
-                async () => {
-                    const url = await upload.snapshot.ref.getDownloadURL();
-                    res(url);
-                }
-            );
-        });
-    };
 
-    createUser = async user => {
-        let remoteUri = null;
+        signOut = () => {
+            firebase.auth().signOut()
+        };
 
-        try {
-            await firebase.auth().createUserWithEmailAndPassword(user.email, user.password);
-
-            let db = this.firestore.collection("users").doc(this.uid);
-
-            db.set({
-                name: user.name,
-                email: user.email,
-                avatar: null
-            });
-
-            if (user.avatar) {
-                remoteUri = await this.uploadPhotoAsync(user.avatar, `avatars/${this.uid}`);
-
-                db.set({ avatar: remoteUri }, { merge: true });
-            }
-        } catch (error) {
-            alert("Error: ", error);
+        get firestore()
+        {
+            return firebase.firestore();
         }
-    };
 
-    signOut = () => {
-        firebase.auth().signOut()
-    };
+        /*get Posts() {
+        let ref = firebase
+            .firestore()
+            .collection("screams")
+            .doc(this.screamId)
+        }
 
-    get firestore() {
-        return firebase.firestore();
+        get screamId(){
+            return firebase.firestore().
+        }*/
+        get uid()
+        {
+            return (firebase.auth().currentUser || {}).uid;
+        }
+
     }
-
-    get uid() {
-        return (firebase.auth().currentUser || {}).uid;
-    }
-
-    get timestamp() {
-        return Date.now();
-    }
-}
 
 Fire.shared = new Fire();
 export default Fire;

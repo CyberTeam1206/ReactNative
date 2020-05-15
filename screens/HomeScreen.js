@@ -9,8 +9,10 @@ import Fire from "../Fire";
 
 
 export default class HomeScreen extends React.Component {
+
+
     state = {
-      body: " "
+        screamList: [],
     };
 
     renderPost = post => {
@@ -23,7 +25,7 @@ export default class HomeScreen extends React.Component {
                         alignItems: "center"}}>
                         <View>
                             <Text style={styles.name}>{post.name}</Text>
-                            <Text style={styles.timestamp}>{moment(post.timestamp).fromNow()}</Text>
+                            <Text style={styles.timestamp}>{moment(post.timeStamp).fromNow()}</Text>
                         </View>
                         <Feather name="more-horizontal" size={24} color="black" />
                     </View>
@@ -50,9 +52,9 @@ export default class HomeScreen extends React.Component {
 
 
                 <FlatList style={styles.feed}
-                          data={this.ScreamsCollection}
+                          data={this.post}
                           renderItem={({scream}) => this.renderPost(scream)}
-                          keyExtractor={scream =>scream.id}
+                          keyExtractor={scream => scream.id}
                           showVerticalScrollIndicator={false}/>
             </View>
         );
@@ -65,7 +67,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#EFECF4'
     },
     header: {
-        paddingTop: 34,
+        paddingTop: 15,
         paddingBottom: 16,
         backgroundColor: "#fff",
         alignItems: "center",

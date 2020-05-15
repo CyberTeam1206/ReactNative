@@ -7,9 +7,9 @@ export default class ProfileScreen extends React.Component {
         user: {}
     };
 
-    unsubscribe = null;
+  /*  unsubscribe = null;
 
-    /*componentDidMount() {
+    componentDidMount() {
         const users = this.props.body || Fire.shared.body;
 
         this.unsubscribe = Fire.shared.firestore
@@ -22,7 +22,8 @@ export default class ProfileScreen extends React.Component {
 
     componentWillUnmount() {
         this.unsubscribe();
-    }*/
+    }
+*/
 
     render() {
         return (
@@ -34,11 +35,11 @@ export default class ProfileScreen extends React.Component {
                             style={styles.avatar}
                         />
                     </View>
-                    <Text style={styles.name}>Hello</Text>
+                    <Text style={styles.name}>Taras</Text>
                 </View>
                 <View style={styles.statsContainer}>
                     <View style={styles.stat}>
-                        <Text style={styles.statAmount}>21</Text>
+                        <Text style={styles.statAmount}>11</Text>
                         <Text style={styles.statTitle}>Posts</Text>
                     </View>
                     <View style={styles.stat}>

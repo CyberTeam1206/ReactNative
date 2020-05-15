@@ -25,7 +25,7 @@ const AppContainer = createStackNavigator(
                 Post: {
                     screen: PostScreen,
                     navigationOptions: {
-                        tabBarIcon: ({ tintColor }) => (
+                        tabBarIcon: ({}) => (
                             <Ionicons
                                 name="ios-add-circle"
                                 size={48}
@@ -87,7 +87,7 @@ export default createAppContainer(
             Auth: AuthStack
         },
         {
-            initialRouteName: "App"
+            initialRouteName: "Loading"
         }
     )
 );
