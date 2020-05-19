@@ -3,6 +3,7 @@ import {createStackNavigator} from 'react-navigation-stack'
 import { createBottomTabNavigator } from "react-navigation-tabs";
 import { Ionicons } from "@expo/vector-icons";
 
+
 import LoadingScreen from "./screens/LoadingScreen";
 import HomeScreen from "./screens/HomeScreen";
 import LoginScreen from "./screens/LoginScreen";
@@ -10,6 +11,8 @@ import RegisterScreen from "./screens/RegisterScreen";
 import PostScreen from "./screens/PostScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import React from "react";
+
+
 
 const AppContainer = createStackNavigator(
     {

@@ -37,7 +37,7 @@ export default class RegisterScreen extends React.Component {
         }
     };
 
-    handlePickAvatar = async () => {
+  /*  handlePickAvatar = async () => {
         UserPermissions.getCameraPermission();
 
         let result = await ImagePicker.launchImageLibraryAsync({
@@ -49,7 +49,7 @@ export default class RegisterScreen extends React.Component {
         if (!result.cancelled) {
             this.setState({ user: { ...this.state.user, avatar: result.uri } });
         }
-    };
+    };*/
 
     render() {
         return (

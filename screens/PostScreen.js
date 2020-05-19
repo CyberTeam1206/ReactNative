@@ -1,41 +1,11 @@
 import React from "react";
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView, TextInput, Image } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import Fire from "../Fire";
 import * as ImagePicker from "expo-image-picker";
 
 
 export default class PostScreen extends React.Component {
-   state = {
-        body: "",
-        imageUrl: null
-    };
-
-
-
-    handlePost = () => {
-         Fire.shared
-             .addPost({ body: this.state.body.trim(), imageUrl: this.state.image})
-             .then(ref => {
-                 this.setState({ body: " ", image: null });
-                 this.props.navigation.goBack();
-             })
-             .catch(error => {
-                 alert(error);
-             });
-     };
-/*
-     pickImage = async () => {
-         let result = await ImagePicker.launchImageLibraryAsync({
-             mediaTypes: ImagePicker.MediaTypeOptions.Images,
-             allowsEditing: true,
-             aspect: [4, 3]
-         });
-
-         if (!result.cancelled) {
-             this.setState({ image: result.uri });
-         }
-     };*/
+ 
 
     render() {
         return (
@@ -45,7 +15,7 @@ export default class PostScreen extends React.Component {
                         <Ionicons name="md-arrow-back" size={24} color="#D8D9DB">
                         </Ionicons>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={this.handlePost}>
+                    <TouchableOpacity onPress={this.onPostAdded}>
                         <Text style={{ fontWeight: "500" }}>Post</Text>
                     </TouchableOpacity>
                 </View>

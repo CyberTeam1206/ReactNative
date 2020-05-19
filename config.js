@@ -1,4 +1,4 @@
-export default FirebaseKeys = {
+module.exports = {
     apiKey: "AIzaSyDNzPoNyKsSxtaU0frqzVlsfKu1sAH55y4",
     authDomain: "cyberrr-8219c.firebaseapp.com",
     databaseURL: "https://cyberrr-8219c.firebaseio.com",

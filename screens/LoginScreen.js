@@ -8,8 +8,8 @@ export default class LoginScreen extends React.Component {
     };
 
     state = {
-        email: "",
-        password: "",
+        email: " ",
+        password: " ",
         errorMessage: null
     };
 
@@ -26,7 +26,8 @@ export default class LoginScreen extends React.Component {
         LayoutAnimation.easeInEaseOut();
         return (
             <View style={styles.container}>
-                <StatusBar barStyle = "light-content"></StatusBar>
+                <StatusBar barStyle = "light-content">
+                </StatusBar>
                 <Image
                     source = {require("../assets/plane-paper.png")}
                     style={{ height:264, width:394}}>
@@ -73,7 +74,7 @@ export default class LoginScreen extends React.Component {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+        flex: 1
     },
     greeting: {
         marginTop: -62,
